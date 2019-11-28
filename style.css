@@ -1,0 +1,31 @@
+body{
+background-image:url('download.jpg');
+background-size:cover;
+}
+div button
+{
+    border-radius: 13px;
+    background-color: pink;
+    font-size:23px;
+    margin-left: 1px;
+}
+div button:hover
+{
+	background-color:yellow;	  
+}
+#letters
+{
+	margin-top: 7px;
+}
+#lab
+{
+	font-size: 27px;
+	color:brown;
+	font-weight: bold;
+}
+#img
+{
+	margin-top: 50px;
+	width: 350px;
+	height: 350px;
+}

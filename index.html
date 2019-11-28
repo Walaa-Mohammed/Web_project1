@@ -1,0 +1,83 @@
+<!Doctype html>
+<html>
+ <head>
+  <title>Learn the English Letters</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+ </head>
+ <body>
+  <div id="page">
+    <h1 id="header">Learn the English Letters</h1>
+    <label for = "number" id="lab">Number of Letters:</label>
+    <input type = "number" id = "number" min = "1" max = "26"/>
+    <button id = "generate" type = "button" onclick="clickCounter_generate(event)">Generate</button>
+  </div>
+  <div id = "letters" hidden = "true" onclick="clickCounter_letters(event)"></div>
+  <div id = "divimage" hidden="true"><center><img src="" id="img"></center></div>
+<script>
+  window.addEventListener("load",function(e){
+    localStorage.setItem("load",e.target+"   "+e.type + " "+ Date());
+    localStorage.getItem("load");
+  });
+  var letters=document.getElementById("letters");
+  var generate=document.getElementById("generate");
+  var image = document.getElementById("img");
+  var divimage = document.getElementById("divimage");
+  var array=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
+       "Q","R","S","T","U","V","W","X","Y","Z"];
+  generate.addEventListener("click",function GenerateButton()
+   {
+       var number=document.getElementById("number").value;
+      if(number>26)
+      {
+        number =26;
+      }
+      document.getElementById("letters").innerHTML='';  ;  
+   for(var i=0;i<number;i++)
+      {
+         var button=document.createElement("button");
+         var randomlength=Math.floor(Math.random() *array.length);
+         var character_test=document.createTextNode(array[i]);
+         button.appendChild(character_test);
+         letters.appendChild(button).innerHTML=array[randomlength];
+         letters.removeAttribute("hidden");
+         letters.appendChild(button).addEventListener("click", function GenerateImage(e){
+         var srcimage='images/'+e.target.textContent+'.jpg';
+         image.src=srcimage;
+         divimage.removeAttribute("hidden");
+         });
+     }
+ });
+
+  var counter1=0;
+   function clickCounter_generate(e){
+  if(typeof(Storage) !== "undefined") 
+  {
+      counter1=counter1+1;
+      localStorage.setItem("Generate Button Event Click","Generate "+"  "+e.target+
+        "    "+e.type+"      "+counter1+"    "+Date());
+      localStorage.getItem("Generate Button Event Click");
+  }
+  }
+  var counter2=0;
+   function clickCounter_letters(e){
+  if(typeof(Storage) !== "undefined") 
+  {
+    counter2=counter2+1;
+   localStorage.setItem("Letters Buttons Event Click","  letters "+e.target+" "+e.type+"      "+counter2+"   "+Date());
+   localStorage.getItem("Letters Buttons Event Click");
+    }
+  } 
+  window.addEventListener("unload",function(e){
+    localStorage.setItem("unload",e.target+"   "+e.type + " "+ Date());
+    localStorage.getItem("unload");
+  });
+    setInterval(function(e)
+    {
+     localStorage.removeItem("load");
+     localStorage.removeItem("unload");
+     localStorage.removeItem("Generate Button Event Click");
+     localStorage.removeItem("Letters Buttons Event Click");
+    },10000);
+  </script>
+ </body>
+</html>
